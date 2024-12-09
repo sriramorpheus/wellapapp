@@ -1,0 +1,32 @@
+Tardis/
+├── app.py                     # Main application entry point
+├── extensions.py              # Initialize extensions like SQLAlchemy
+├── flashcards/                # Flashcards feature module
+│   ├── __init__.py            # Initialize flashcards package
+│   ├── models.py              # Database models for flashcards
+│   ├── routes.py              # Routes for flashcards
+│   └── templates/             # Templates for flashcards
+│       └── home.html          # Main flashcards page
+├── home/                      # Homepage module
+│   ├── __init__.py            # Initialize home package
+│   ├── routes.py              # Routes for the homepage
+│   └── templates/             # Templates for homepage
+│       └── homepage.html      # Homepage template
+├── reading_mode/              # Reading mode module
+│   ├── __init__.py            # Initialize reading mode package
+│   ├── models.py              # Database models for reading mode
+│   ├── routes.py              # Routes for reading mode
+│   └── templates/             # Templates for reading mode
+│       └── home.html          # Main reading mode page
+├── static/                    # Static assets (CSS, JS, images)
+│   ├── css/
+│   │   └── style.css          # Main CSS file for styling
+│   └── js/
+│       └── main.js            # Main JavaScript file
+├── templates/                 # Global templates
+│   ├── 404.html               # Custom 404 error page
+│   └── base.html              # Base template for consistent layout
+├── migrations/                # Folder for database migrations (created automatically)
+├── instance/                  # Instance-specific files (config, database, etc.)
+│   └── tardis.db              # SQLite database file (auto-generated)
+└── config.py                  # Optional configuration file

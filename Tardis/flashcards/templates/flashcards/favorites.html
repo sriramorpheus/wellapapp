@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Favorites</h1>
+{% if flashcards %}
+<div class="flashcards-grid">
+    {% for flashcard in flashcards %}
+    <div class="flashcard">
+        <div class="front">
+            <p>{{ flashcard.question }}</p>
+        </div>
+        <div class="back">
+            <p>{{ flashcard.answer }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No favorite flashcards found.</p>
+{% endif %}
+{% endblock %}

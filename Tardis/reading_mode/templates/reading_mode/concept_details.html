@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center mb-4">{{ concept.name }}</h1>
+<p class="text-center"><strong>Description:</strong> {{ concept.description }}</p>
+
+<!-- Tabs for Features -->
+{% if features and features|length > 0 %}
+<ul class="nav nav-tabs mb-4" id="featureTabs" role="tablist" style="display: flex; flex-wrap: wrap;">
+    {% for feature in features %}
+    <li class="nav-item" role="presentation" style="flex: 1 1 auto; max-width: 150px;">
+        <button class="nav-link {% if loop.first %}active{% endif %}" 
+                id="feature-{{ feature.name|replace(' ', '-') }}-tab" 
+                data-bs-toggle="tab" 
+                data-bs-target="#feature-{{ feature.name|replace(' ', '-') }}" 
+                type="button" 
+                role="tab" 
+                aria-controls="feature-{{ feature.name|replace(' ', '-') }}" 
+                aria-selected="{{ 'true' if loop.first else 'false' }}">
+            <span class="tab-text" title="{{ feature.name }}">{{ feature.name }}</span>
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+<div class="tab-content" id="featureTabContent">
+    {% for feature in features %}
+    <div class="tab-pane fade {% if loop.first %}show active{% endif %}" 
+         id="feature-{{ feature.name|replace(' ', '-') }}" 
+         role="tabpanel" 
+         aria-labelledby="feature-{{ feature.name|replace(' ', '-') }}-tab">
+        <h3>{{ feature.name }}</h3>
+        <p><strong>Intent:</strong> {{ feature.intent }}</p>
+
+        <!-- Accordion for Parts -->
+        <div class="accordion" id="accordion-{{ feature.name|replace(' ', '-') }}">
+            {% for part in feature.parts %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading-{{ loop.index }}">
+                    <button class="accordion-button collapsed" 
+                            type="button" 
+                            data-bs-toggle="collapse" 
+                            data-bs-target="#collapse-{{ loop.index }}" 
+                            aria-expanded="false" 
+                            aria-controls="collapse-{{ loop.index }}">
+                        {{ part.part }}
+                    </button>
+                </h2>
+                <div id="collapse-{{ loop.index }}" 
+                     class="accordion-collapse collapse" 
+                     aria-labelledby="heading-{{ loop.index }}" 
+                     data-bs-parent="#accordion-{{ feature.name|replace(' ', '-') }}">
+                    <div class="accordion-body">
+                        <p><strong>Space:</strong> <span class="badge bg-primary">{{ part.space }}</span></p>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>Option:</strong> {{ part.option }}
+                                <br>
+                                <strong>Requirement:</strong> {{ part.requirement }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No features available for this concept.</p>
+{% endif %}
+
+<a href="{{ url_for('reading_mode.reading_mode_home') }}" class="btn btn-secondary mt-4">Back to Reading Mode</a>
+{% endblock %}

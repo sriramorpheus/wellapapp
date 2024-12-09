@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Flashcards{% endblock %}
+
+{% block content %}
+<h1>Flashcards</h1>
+
+<!-- Filter Section -->
+<form method="GET" action="{{ url_for('flashcards.flashcards_home') }}">
+    <label for="concept">Filter by Concept:</label>
+    <select name="concept">
+        <option value="">All Concepts</option>
+        {% for concept in concepts %}
+        <option value="{{ concept.id }}">{{ concept.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="difficulty">Filter by Difficulty:</label>
+    <select name="difficulty">
+        <option value="">All Difficulties</option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+    </select>
+
+    <button type="submit">Apply Filters</button>
+</form>
+
+<!-- Flashcards List -->
+<div class="flashcards">
+    {% for flashcard in flashcards %}
+    <div class="flashcard">
+        <div class="front">
+            <p>{{ flashcard.question }}</p>
+        </div>
+        <div class="back">
+            <p>{{ flashcard.answer }}</p>
+        </div>
+        <button onclick="togglefavorite('{{ flashcard.id }}')">
+            {% if flashcard.is_favorite %}
+            Unfavorite
+            {% else %}
+            favorite
+            {% endif %}
+        </button>        
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+function togglefavorite(id) {
+    fetch(`/flashcards/toggle_favorite/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'  // Ensure correct headers
+        },
+        body: JSON.stringify({})  // Send an empty body as the server expects
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === 'success') {
+            location.reload();  // Reload the page on success
+        } else {
+            alert('Failed to toggle favorite.');
+        }
+    })
+    .catch(error => console.error('Error:', error));  // Log any errors
+}
+</script>
+{% endblock %}

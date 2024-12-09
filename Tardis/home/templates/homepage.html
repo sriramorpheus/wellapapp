@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="feature-tiles">
+    <a href="{{ url_for('reading_mode.reading_mode_home') }}" class="feature-tile">
+        <h2>Explore WELL</h2>
+    </a>
+    <a href="{{ url_for('flashcards.flashcards_home') }}" class="feature-tile">
+        <h2>Flashcards</h2>
+    </a>
+</section>
+{% endblock %}

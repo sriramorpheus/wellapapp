@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Flashcard{% endblock %}
+
+{% block content %}
+<h1>Add Flashcard</h1>
+
+<form method="POST" action="{{ url_for('flashcards.add_flashcard') }}">
+    <label for="concept_id">Concept:</label>
+    <select name="concept_id">
+        {% for concept in concepts %}
+        <option value="{{ concept.id }}">{{ concept.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="feature_id">Feature (Optional):</label>
+    <select name="feature_id">
+        <option value="">None</option>
+        {% for feature in features %}
+        <option value="{{ feature.id }}">{{ feature.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="question">Question:</label>
+    <textarea name="question" required></textarea>
+
+    <label for="answer">Answer:</label>
+    <textarea name="answer" required></textarea>
+
+    <label for="difficulty">Difficulty:</label>
+    <select name="difficulty">
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+    </select>
+
+    <button type="submit">Add Flashcard</button>
+</form>
+{% endblock %}
