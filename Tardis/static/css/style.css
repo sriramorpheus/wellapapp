@@ -7,37 +7,42 @@ body {
     line-height: 1.6;
 }
 
-.feature-tiles {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 40px;
-}
-
+/* Feature Tile Styling */
 .feature-tile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 200px;
-    height: 120px;
-    background-color: #fff;
+    background-color: #f8f9fa;
+    padding: 1.5rem;
     border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    text-decoration: none;
-    color: #333;
+    position: relative;
+    overflow: hidden;
+    text-align: center; /* Center content horizontally */
 }
 
-.feature-tile h2 {
-    font-size: 1.2rem;
+/* Image Styling */
+.feature-tile img.concept-icon {
+    width: 80px; /* Reduced size */
+    height: 80px;
+    margin-bottom: 0.5rem; /* Slight spacing between icon and title */
+    object-fit: contain; /* Ensure the entire image fits */
+}
+
+/* Title Styling */
+.feature-tile h3 {
+    font-size: 1rem; /* Adjusted for balance */
     font-weight: bold;
+    color: #343a40;
+    margin: 0;
+    white-space: nowrap; /* Prevents wrapping */
+    overflow: hidden; /* Ensures long text doesn't overflow */
+    text-overflow: ellipsis; /* Adds '...' for long text */
+    display: block; /* Ensures proper alignment under the icon */
 }
 
+/* Hover Effects for Tiles */
 .feature-tile:hover {
-    transform: translateY(-5px);
+    transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    color: #007bff;
 }
 
 header nav {
@@ -385,3 +390,146 @@ header nav ul li a:hover {
     font-size: 0.95rem;
     line-height: 1.5;
 }
+
+/* Light mode (default) */
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Dark mode styles */
+/* General Dark Mode Styles */
+body.dark {
+    background-color: #2E2E2E;
+    color: #E0E0E0;
+}
+
+/* Navbar Styling */
+body.dark header nav {
+    background-color: #383838;
+    border-bottom: 1px solid #555;
+}
+
+body.dark header nav ul li a {
+    color: #E0E0E0;
+}
+
+body.dark header nav ul li a:hover {
+    color: #80D8FF;
+}
+
+/* Feature Tiles */
+body.dark .feature-tile {
+    background-color: #424242;
+    color: #E0E0E0;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+body.dark .feature-tile:hover {
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
+    color: #80D8FF;
+}
+
+/* Accordion Styling */
+body.dark .accordion-button {
+    color: #80D8FF;
+    background-color: #424242;
+}
+
+body.dark .accordion-button:hover {
+    background-color: #505050;
+}
+
+body.dark .accordion-body {
+    background-color: #333333;
+    color: #E0E0E0;
+}
+
+body.dark .accordion-item {
+    border: 1px solid #555;
+}
+
+/* Cards Styling */
+body.dark .card {
+    background-color: #333333;
+    color: #E0E0E0;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+body.dark .card:hover {
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
+}
+
+body.dark .card-header {
+    background-color: #424242;
+    color: #E0E0E0;
+}
+
+body.dark .card-body {
+    background-color: #383838;
+    color: #E0E0E0;
+}
+
+/* Buttons */
+body.dark .btn {
+    background-color: #505050;
+    color: #E0E0E0;
+    border-color: #666;
+}
+
+body.dark .btn:hover {
+    background-color: #606060;
+}
+
+/* List Group */
+body.dark .list-group-item {
+    background-color: #424242;
+    color: #E0E0E0;
+    border: 1px solid #555;
+}
+
+body.dark .list-group-item hr {
+    border-top: 1px solid #666;
+}
+
+/* Tabs */
+body.dark .nav-tabs .nav-link {
+    background-color: #424242;
+    color: #E0E0E0;
+    border-color: #555;
+}
+
+body.dark .nav-tabs .nav-link.active {
+    background-color: #80D8FF;
+    color: #2E2E2E;
+    border-color: #80D8FF #80D8FF #2E2E2E;
+}
+
+body.dark .nav-tabs .nav-link:hover {
+    background-color: #505050;
+    color: #80D8FF;
+}
+
+/* Flashcards */
+body.dark .flashcard {
+    background-color: #424242;
+    color: #E0E0E0;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+body.dark .flashcard:hover {
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Concepts Grid */
+body.dark .concept-tile {
+    background-color: #424242;
+    color: #E0E0E0;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+body.dark .concept-tile:hover {
+    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.2);
+    color: #80D8FF;
+}
+

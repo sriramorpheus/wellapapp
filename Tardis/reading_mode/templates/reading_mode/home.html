@@ -8,18 +8,15 @@
 
 <div class="container">
     <div class="row">
-        {% for concept in concepts %}
-        <div class="col-md-4 col-sm-6 mb-4">
-            <div class="card concept-tile shadow-sm h-100">
-                <div class="card-body text-center">
-                    <h2 class="card-title">{{ concept.name }}</h2>
-                    {% if concept.description %}
-                    <p class="card-text">{{ concept.description }}</p>
-                    {% else %}
-                    <p class="card-text">Explore features related to {{ concept.name }}.</p>
-                    {% endif %}
-                    <a href="{{ url_for('reading_mode.concept_details', concept_id=concept.id) }}" class="btn btn-primary mt-3">View Concept</a>
-                </div>
+        {% for tile in tiles %}
+        <div class="col-md-4 mb-4">
+            <div class="feature-tile text-center">
+                <!-- Display image dynamically -->
+                <img src="{{ url_for('static', filename='images/concepts/' + tile.image) }}" 
+                     alt="{{ tile.name }}" 
+                     class="concept-icon">
+                <h3>{{ tile.name }}</h3>
+                <a href="{{ url_for('reading_mode.concept_details', concept_id=tile.id) }}" class="stretched-link"></a>
             </div>
         </div>
         {% endfor %}

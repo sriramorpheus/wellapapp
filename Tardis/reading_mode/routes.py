@@ -5,12 +5,13 @@ import pandas as pd
 import json
 from . import reading_mode_bp
 from reading_mode.utils import convert_to_json
+from tile_data import tiles  # Import the tiles data
 
 # Route: Display Reading Mode Home (Tiles)
 @reading_mode_bp.route('/')
 def reading_mode_home():
     concepts = Concept_class.query.all()  # Fetch all concepts
-    return render_template('reading_mode/home.html', concepts=concepts)
+    return render_template('reading_mode/home.html', concepts=concepts, tiles=tiles)
 
 
 @reading_mode_bp.route('/concept/<int:concept_id>')
