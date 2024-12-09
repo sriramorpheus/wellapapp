@@ -156,7 +156,6 @@ header nav ul li a:hover {
     transform: rotate(0deg);
 }
 
-
 .accordion .accordion-header {
     background-color: #f8f9fa;
     font-weight: bold;
@@ -285,17 +284,6 @@ header nav ul li a:hover {
     color: #007bff;
 }
 
-/* Adjustments for smaller screens */
-@media (max-width: 768px) {
-    .nav-tabs .nav-item {
-        flex: 1 1 50%; /* Show two tabs per row on smaller screens */
-    }
-
-    .nav-tabs .nav-link {
-        font-size: 0.8rem; /* Smaller font for narrow screens */
-    }
-}
-
 /* Accordion item styling */
 .accordion-item {
     border: 1px solid #ddd;
@@ -304,33 +292,96 @@ header nav ul li a:hover {
     overflow: hidden;
 }
 
+/* Accordion header style */
+.accordion-header .accordion-button {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #007bff;
+}
+
+.accordion-header .accordion-button.collapsed {
+    color: #333;
+}
+
+.accordion-header .accordion-button:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+/* Badge styling */
+.badge-primary {
+    background-color: #007bff;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .col-md-6 {
+        flex: 1 1 100%; /* Cards stack on smaller screens */
+    }
+
+    .card-body {
+        padding: 0.75rem;
+    }
+}
+
 /* Card styling */
+.card-title {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Option and Requirement Icons */
+.list-group-item p i {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+/* Divider Line */
+.list-group-item hr {
+    margin: 0.5rem 0;
+    border-top: 1px solid #ddd;
+}
+
+/* Card Styling */
 .card {
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
+    border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.2s ease-in-out;
 }
 
 .card:hover {
     transform: scale(1.02);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 .card-header {
-    background-color: #f8f9fa;
-    font-weight: bold;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
     padding: 0.5rem 1rem;
 }
 
 .card-body {
     padding: 1rem;
+    background-color: #f8f9fa;
 }
 
-.badge-primary {
-    background-color: #007bff;
-    color: #fff;
-    font-size: 0.9rem;
-    padding: 0.3rem 0.6rem;
-    border-radius: 0.25rem;
+.list-group-item {
+    border: none;
+    padding: 0.75rem 1rem;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item p {
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
 }

@@ -45,7 +45,7 @@ def concept_details(concept_id):
             "intent": feature.intent,
             "grouped_parts": grouped_parts
         })
-
+    
     # Pass the concept and features data to the template
     return render_template('reading_mode/concept_details.html', concept=concept, features=feature_data)
 
