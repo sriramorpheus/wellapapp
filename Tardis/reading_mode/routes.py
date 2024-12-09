@@ -18,38 +18,35 @@ def concept_details(concept_id):
     """
     Display details of a specific concept, grouped by features.
     """
+    # Fetch the concept and its related features
     concept = Concept_class.query.get_or_404(concept_id)
     features = Feature_class.query.filter_by(concept_id=concept_id).all()
-    
-    ''' 
-    # Debugging to confirm retrieved data
-    print(f"Concept: {concept.name}")
-    print(f"Features: {features}")
-    '''
 
+    # Prepare the feature data
     feature_data = []
+
     for feature in features:
-        parts = [
-            {
-                "part": part.part,
-                "space": part.space,
-                "option": part.option,
-                "requirement": part.requirement,
-            }
-            for part in feature.parts
-        ]
-        feature_data.append({"name": feature.name, "intent": feature.intent, "parts": parts})
+        # Group parts by unique names
+        grouped_parts = {}
+        for part in feature.parts:
+            part_name = part.part
+            if part_name not in grouped_parts:
+                grouped_parts[part_name] = {}
+            
+            space = part.space
+            if space not in grouped_parts[part_name]:
+                grouped_parts[part_name][space] = []
+            
+            grouped_parts[part_name][space].append((part.option, part.requirement))
 
-    grouped_data = {concept.name: feature_data}
+        # Add grouped_parts to the feature structure
+        feature_data.append({
+            "name": feature.name,
+            "intent": feature.intent,
+            "grouped_parts": grouped_parts
+        })
 
-    ''' 
-    # Debugging to confirm grouped_data structure
-    # Debugging output
-    print(f"Concept: {concept.name}")
-    print(f"Feature Data: {feature_data}")
-    '''
-
-    # Pass data to the template
+    # Pass the concept and features data to the template
     return render_template('reading_mode/concept_details.html', concept=concept, features=feature_data)
 
 

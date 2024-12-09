@@ -36,7 +36,7 @@
 
         <!-- Accordion for Parts -->
         <div class="accordion" id="accordion-{{ feature.name|replace(' ', '-') }}">
-            {% for part in feature.parts %}
+            {% for part, variations in feature.grouped_parts.items() %}
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading-{{ loop.index }}">
                     <button class="accordion-button collapsed" 
@@ -45,7 +45,7 @@
                             data-bs-target="#collapse-{{ loop.index }}" 
                             aria-expanded="false" 
                             aria-controls="collapse-{{ loop.index }}">
-                        {{ part.part }}
+                        {{ part }}
                     </button>
                 </h2>
                 <div id="collapse-{{ loop.index }}" 
@@ -53,19 +53,31 @@
                      aria-labelledby="heading-{{ loop.index }}" 
                      data-bs-parent="#accordion-{{ feature.name|replace(' ', '-') }}">
                     <div class="accordion-body">
-                        <p><strong>Space:</strong> <span class="badge bg-primary">{{ part.space }}</span></p>
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <strong>Option:</strong> {{ part.option }}
-                                <br>
-                                <strong>Requirement:</strong> {{ part.requirement }}
-                            </li>
-                        </ul>
+                        <div class="row">
+                            {% for space, options in variations.items() %}
+                            <div class="col-md-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="card-header">
+                                        <strong>Space:</strong> <span class="badge bg-primary">{{ space }}</span>
+                                    </div>
+                                    <div class="card-body">
+                                        {% for option, requirement in options %}
+                                        <p>
+                                            <strong>Option:</strong> {{ option }}<br>
+                                            <strong>Requirement:</strong> {{ requirement }}
+                                        </p>
+                                        <hr>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
             {% endfor %}
-        </div>
+        </div>        
     </div>
     {% endfor %}
 </div>

@@ -156,11 +156,6 @@ header nav ul li a:hover {
     transform: rotate(0deg);
 }
 
-.accordion .accordion-item {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
 
 .accordion .accordion-header {
     background-color: #f8f9fa;
@@ -300,7 +295,42 @@ header nav ul li a:hover {
         font-size: 0.8rem; /* Smaller font for narrow screens */
     }
 }
-/* Badges for spaces */
+
+/* Accordion item styling */
+.accordion-item {
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+/* Card styling */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
 .badge-primary {
     background-color: #007bff;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.25rem;
 }
